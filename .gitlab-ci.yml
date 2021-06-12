@@ -62,7 +62,7 @@ tf-apply:
     PLAN_FILE: default.tfplan
   script:
       # - terraform apply -auto-approve ${PLAN_FILE}
-      - ls 
+      - ls terraform/production 
   environment:
     name: aws 
   rules:
