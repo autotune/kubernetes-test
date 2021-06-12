@@ -61,7 +61,7 @@ tf-apply:
   variables:
     PLAN_FILE: terraform/production/default.tfplan
   script:
-      - terraform -chdir ${STACK} apply -auto-approve ${PLAN_FILE}
+      - terraform -chdir=${STACK} apply -auto-approve ${PLAN_FILE}
   environment:
     name: aws 
   rules:
