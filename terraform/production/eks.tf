@@ -69,7 +69,7 @@ module "badams" {
   }
 
   node_groups = {
-    example = {
+    Example = {
       desired_capacity = 1
       max_capacity     = 2
       min_capacity     = 1
