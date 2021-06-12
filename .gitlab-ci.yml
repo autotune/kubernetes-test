@@ -9,7 +9,7 @@ tf-validate:
   stage: terraform:check
   extends: .base-terraform
   script: |
-      terraform -chdir=terraform/production init -input=false  
+      terraform -chdir=terraform/production init -input=false -backend-config="access_key=$TF_VAR_access_key" -backend-config="secret_key=$TF_VAR_secret_key 
       terraform -chdir=terraform/production validate 
   needs: []
 
