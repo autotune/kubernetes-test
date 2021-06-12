@@ -3,7 +3,7 @@ terraform {
     bucket     = "badams"
     key        = "badams.tfstate"
     region     = "us-east-1"
-    access_key = "AKIAW6SGPZFHSCMTXHEE"
-    secret_key = "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"
+    access_key = "$AWS_ACCESS_KEY_ID"
+    secret_key = "$AWS_SECRET_ACCESS_KEY"
   }
 }
