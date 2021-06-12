@@ -60,7 +60,7 @@ tf-apply:
   extends: .base-terraform
   variables:
     STACK: "terraform/production"
-    PLAN_FILE: terraform/production/default.tfplan
+    PLAN_FILE: default.tfplan
   script:
       - terraform -chdir=${STACK} apply -auto-approve ${PLAN_FILE}
   environment:
