@@ -9,7 +9,7 @@ tf-validate:
   stage: terraform:check
   extends: .base-terraform
   script: |
-      terraform -chdir=terraform/production init -input=false -backend=false 
+      terraform -chdir=terraform/production init -input=false  
       terraform -chdir=terraform/production validate 
   needs: []
 
@@ -36,7 +36,7 @@ tf-plan:
   extends: .base-terraform
   variables:
     STACK: "terraform/production"
-    WORKSPACE: badams
+    WORKSPACE: default 
     VARS: "-var-file=badams.tfvars"
   script:
     - terraform -chdir=${STACK} init -input=false 
