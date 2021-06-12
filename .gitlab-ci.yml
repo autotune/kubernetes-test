@@ -65,9 +65,9 @@ tf-apply:
     WORKSPACE: default
   script:
       - tar -xvf terraform.tar 
-      - ls ${STACK}
+      - ls -lha ${STACK}
       - terraform workspace select ${WORKSPACE}
-      - cd "terraform/production" && terraform apply -auto-approve ${PLAN_FILE}
+      - cd "terraform/production" && terraform init && terraform apply -auto-approve ${PLAN_FILE}
   environment:
     name: aws 
   rules:
