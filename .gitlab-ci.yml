@@ -50,6 +50,7 @@ tf-plan:
   artifacts:
     name: ${WORKSPACE}
     paths:
+      - ./${STACK}/*.tfplan
       - ./*.tfplan
       - .terraform
     expire_in: 1 week
