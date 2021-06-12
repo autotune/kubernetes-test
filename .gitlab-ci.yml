@@ -35,13 +35,13 @@ tf-plan:
   stage: terraform:plan
   extends: .base-terraform
   variables:
-    STACK: "terraform/mystack"
+    STACK: "terraform/production"
     WORKSPACE: badams
     VARS: "-var-file=badams.tfvars"
   script:
-    - terraform init -input=false ${STACK}
-    - terraform workspace select ${WORKSPACE} ${STACK}
-    - terraform plan -out=${WORKSPACE}.tfplan ${VARS} ${STACK}
+    - terraform -chdir=${STACK} init -input=false 
+    - terraform workspace select ${WORKSPACE} 
+    - terraform plan -out=${WORKSPACE}.tfplan ${VARS}
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH
       changes:
