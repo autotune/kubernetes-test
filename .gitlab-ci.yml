@@ -11,7 +11,6 @@ tf-validate:
   script: |
       terraform init -input=false -backend=false terraform/production
       terraform validate terraform/production
-    done
   needs: []
 
 stages:
