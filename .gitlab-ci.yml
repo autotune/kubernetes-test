@@ -61,7 +61,8 @@ tf-apply:
   variables:
     PLAN_FILE: default.tfplan
   script:
-    - terraform apply -auto-approve ${PLAN_FILE}
+      # - terraform apply -auto-approve ${PLAN_FILE}
+      - ls 
   environment:
     name: aws 
   rules:
