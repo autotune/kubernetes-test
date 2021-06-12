@@ -70,3 +70,5 @@ tf-apply:
         - terraform/**
         - my.tfvars   
       when: manual
+  dependencies: 
+    - tf-plan
