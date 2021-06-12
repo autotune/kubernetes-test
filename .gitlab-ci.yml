@@ -10,7 +10,7 @@ tf-validate:
   extends: .base-terraform
   script: |
       terraform -chdir=terraform/production init -input=false -backend=false 
-      terraform validate terraform/production
+      terraform -chdir=terraform/production validate 
   needs: []
 
 stages:
