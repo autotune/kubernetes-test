@@ -4,7 +4,13 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 3.0"
     }
+  required_providers {
+    acme = {
+      source = "vancluever/acme"
+      version = "~> 2.0"
+    } 
   }
+ }
 }
 
 provider "aws" {
