@@ -24,8 +24,8 @@ stages:
     entrypoint: [""]
   before_script:
     # set the aws service account credentials from the variables
-    - export tf_var_access_key="$AWS_ACCESS_KEY_ID"
-    - export tf_var_secret_key="$AWS_SECRET_ACCESS_KEY"
+    - export TF_VAR_access_key="$AWS_ACCESS_KEY_ID"
+    - export TF_VAR_secret_key="$AWS_SECRET_ACCESS_KEY"
     - terraform version
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH
@@ -39,7 +39,6 @@ tf-plan:
     WORKSPACE: default 
     VARS: "-var-file=badams.tfvars"
   script:
-    - echo ${AWS_ACCESS_KEY_ID}
     - terraform -chdir=${STACK} init -input=false -backend-config "access_key=$TF_VAR_access_key"
     - terraform -chdir=${STACK} init -input=false -backend-config "secret_key=$TF_VAR_secret_key"
     - terraform workspace select ${WORKSPACE} 
