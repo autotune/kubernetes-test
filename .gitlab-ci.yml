@@ -61,8 +61,7 @@ tf-apply:
   variables:
     PLAN_FILE: ${STACK}/${WORKSPACE}.tfplan
   script:
-      # - terraform apply -auto-approve ${PLAN_FILE}
-      - ls terraform/production 
+      - terraform apply -auto-approve ${PLAN_FILE}
   environment:
     name: aws 
   rules:
