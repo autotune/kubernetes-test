@@ -61,8 +61,9 @@ tf-apply:
   variables:
     STACK: "terraform/production"
     PLAN_FILE: default.tfplan
+    WORKSPACE: default
   script:
-      - ls -lha "terraform/production"
+      - terraform workspace select ${WORKSPACE}
       - cd "terraform/production" && terraform apply -auto-approve ${PLAN_FILE}
   environment:
     name: aws 
