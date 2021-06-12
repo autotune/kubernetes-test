@@ -9,6 +9,7 @@ tf-validate:
   stage: terraform:check
   extends: .base-terraform
   script: |
+      echo ${AWS_ACCESS_KEY_ID}
       terraform -chdir=terraform/production init -input=false  
       terraform -chdir=terraform/production validate 
   needs: []
