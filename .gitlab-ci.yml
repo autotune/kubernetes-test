@@ -65,6 +65,7 @@ tf-apply:
     WORKSPACE: default
   script:
       - terraform workspace select ${WORKSPACE}
+      - chmod -R a+x "terraform/production/.terraform/plugins/linux_amd64/*
       - cd "terraform/production" && terraform apply -auto-approve ${PLAN_FILE}
   environment:
     name: aws 
