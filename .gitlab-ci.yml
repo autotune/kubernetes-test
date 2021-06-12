@@ -59,7 +59,7 @@ tf-apply:
   stage: terraform:apply
   extends: .base-terraform
   variables:
-    PLAN_FILE: badams.tfplan
+    PLAN_FILE: default.tfplan
   script:
     - terraform apply -auto-approve ${PLAN_FILE}
   environment:
