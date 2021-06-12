@@ -37,9 +37,9 @@ tf-plan:
   variables:
     STACK: "terraform/production"
     WORKSPACE: default 
-    VARS: "-var-file=badams.tfvars"
+    VARS: "-var-file=terraform/production/badams.tfvars"
   script:
-    - terraform -chdir=${STACK} init -input=false -backend-config "access_key=$TF_VAR_access_key" -backend-config "secret_key=$TF_VAR_secret_key"
+    - terraform -chdir=${STACK} init -input=false -backend-config="access_key=$TF_VAR_access_key" -backend-config="secret_key=$TF_VAR_secret_key"
     - terraform workspace select ${WORKSPACE} 
     - terraform plan -out=${WORKSPACE}.tfplan ${VARS}
   rules:
