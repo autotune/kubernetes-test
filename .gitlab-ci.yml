@@ -64,7 +64,7 @@ tf-apply:
     PLAN_FILE: default.tfplan
     WORKSPACE: default
   script:
-      - tar -xvf terraform.tar && mv .terraform ${STACK}
+      - tar -xvf terraform.tar 
       - ls ${STACK}
       - terraform workspace select ${WORKSPACE}
       - cd "terraform/production" && terraform apply -auto-approve ${PLAN_FILE}
