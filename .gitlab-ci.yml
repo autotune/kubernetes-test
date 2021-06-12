@@ -1,0 +1,73 @@
+tf-fmt:
+  stage: terraform:check
+  extends: .base-terraform
+  script:
+    - terraform fmt -check -recursive terraform/
+  needs: []
+  
+tf-validate:
+  stage: terraform:check
+  extends: .base-terraform
+  script: |
+    for d in $(ls terraform); do
+      terraform init -input=false -backend=false terraform/$d
+      terraform validate terraform/$d
+    done
+  needs: []
+
+stages:
+  - terraform:check
+  - terraform:plan
+  - terraform:apply
+
+.base-terraform:
+  image: 
+    name: "hashicorp/terraform"
+    entrypoint: [""]
+  before_script:
+    # set the aws service account credentials from the variables
+    - export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+    - export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    - terraform version
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH
+      changes:
+      - terraform/**
+tf-plan:
+  stage: terraform:plan
+  extends: .base-terraform
+  variables:
+    STACK: "terraform/mystack"
+    WORKSPACE: badams
+    VARS: "-var-file=badams.tfvars"
+  script:
+    - terraform init -input=false ${STACK}
+    - terraform workspace select ${WORKSPACE} ${STACK}
+    - terraform plan -out=${WORKSPACE}.tfplan ${VARS} ${STACK}
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH
+      changes:
+        - terraform/**
+        - my.tfvars
+  artifacts:
+    name: ${WORKSPACE}
+    paths:
+      - ./*.tfplan
+      - .terraform
+    expire_in: 1 week
+
+tf-apply:
+  stage: terraform:apply
+  extends: .base-terraform
+  variables:
+    PLAN_FILE: badams.tfplan
+  script:
+    - terraform apply -auto-approve ${PLAN_FILE}
+  environment:
+    name: aws 
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master" || $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - terraform/**
+        - my.tfvars   
+      when: manual
