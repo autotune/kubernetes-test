@@ -62,7 +62,7 @@ tf-apply:
     STACK: "terraform/production"
     PLAN_FILE: default.tfplan
   script:
-      - terraform -chdir=${STACK} apply -auto-approve ${PLAN_FILE}
+      - terraform -chdir="terraform/production" apply -auto-approve ${PLAN_FILE}
   environment:
     name: aws 
   rules:
