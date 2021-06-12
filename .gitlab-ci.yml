@@ -39,6 +39,7 @@ tf-plan:
     WORKSPACE: default 
     VARS: "-var-file=badams.tfvars"
   script:
+    - rm -fr "${STACK}/.terraform"
     - terraform -chdir=${STACK} init -input=false -backend-config="access_key=$AWS_ACCESS_KEY_ID" -backend-config="secret_key=$AWS_SECRET_ACCESS_KEY"
     - terraform workspace select ${WORKSPACE} 
     - terraform -chdir=${STACK} plan -out=${WORKSPACE}.tfplan ${VARS}
