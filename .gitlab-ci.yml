@@ -24,8 +24,8 @@ stages:
     entrypoint: [""]
   before_script:
     # set the aws service account credentials from the variables
-    - export TF_VAR_access_key="AKIAW6SGPZFHSCMTXHEE"
-    - export TF_VAR_secret_key="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"
+    - export TF_VAR_access_key="${AWS_ACCESS_KEY_ID}"
+    - export TF_VAR_secret_key="${AWS_SECRET_ACCESS_KEY}"
     - terraform version
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH
