@@ -39,6 +39,7 @@ tf-plan:
     WORKSPACE: default 
     VARS: "-var-file=badams.tfvars"
   script:
+    - echo ${AWS_ACCESS_KEY_ID}
     - terraform -chdir=${STACK} init -input=false 
     - terraform workspace select ${WORKSPACE} 
     - terraform plan -out=${WORKSPACE}.tfplan ${VARS}
