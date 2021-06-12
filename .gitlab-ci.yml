@@ -59,7 +59,7 @@ tf-apply:
   stage: terraform:apply
   extends: .base-terraform
   variables:
-    PLAN_FILE: ${STACK}/${WORKSPACE}.tfplan
+    PLAN_FILE: terraform/production/default.tfplan
   script:
       - terraform apply -auto-approve ${PLAN_FILE}
   environment:
