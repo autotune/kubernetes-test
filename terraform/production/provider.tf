@@ -5,9 +5,9 @@ terraform {
       version = "~> 3.0"
     }
     acme = {
-      source = "vancluever/acme"
+      source  = "vancluever/acme"
       version = "~> 2.0"
-    } 
+    }
   }
 }
 
