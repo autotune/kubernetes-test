@@ -9,9 +9,8 @@ tf-validate:
   stage: terraform:check
   extends: .base-terraform
   script: |
-    for d in $(ls terraform); do
-      terraform init -input=false -backend=false terraform/$d
-      terraform validate terraform/$d
+      terraform init -input=false -backend=false terraform/production
+      terraform validate terraform/production
     done
   needs: []
 
