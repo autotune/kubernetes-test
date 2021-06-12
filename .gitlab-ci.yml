@@ -62,7 +62,7 @@ tf-apply:
     STACK: "terraform/production"
     PLAN_FILE: default.tfplan
   script:
-      - ls "terraform/production"
+      - ls "."
       - cd "terraform/production" && terraform apply -auto-approve ${PLAN_FILE}
   environment:
     name: aws 
