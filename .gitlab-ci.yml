@@ -39,9 +39,9 @@ tf-plan:
     WORKSPACE: default 
     VARS: "-var-file=terraform/production/badams.tfvars"
   script:
-    - terraform -chdir=${STACK} init -input=false -backend-config="access_key=$AWS_ACCESS_KEY_ID" -backend-config="secret_key=$AWS_SECRET_ACCESS_KEY"
+    - terraform -chdir=${STACK} init -input=false -backend-config="access_key=AKIAW6SGPZFHSCMTXHEE" -backend-config="secret_key="
     - terraform workspace select ${WORKSPACE} 
-    - terraform plan -out=${WORKSPACE}.tfplan ${VARS}
+    - terraform -chdir=${STACK} plan -out=${WORKSPACE}.tfplan ${VARS}
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH
       changes:
