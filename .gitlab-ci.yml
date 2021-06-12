@@ -52,7 +52,7 @@ tf-plan:
     paths:
       - ./${STACK}/*.tfplan
       - ./*.tfplan
-      - .terraform
+      - ./${STACK}/.terraform
     expire_in: 1 week
 
 tf-apply:
