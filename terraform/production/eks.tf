@@ -106,8 +106,8 @@ resource "aws_route53_record" "rocketchat" {
   name    = "chat"
   type    = "CNAME"
   ttl     = "300"
-  records = ["a420dba0371134bfc8938ef346eba567-1425925386.us-east-1.elb.amazonaws.com"] 
-} 
+  records = ["a420dba0371134bfc8938ef346eba567-1425925386.us-east-1.elb.amazonaws.com"]
+}
 
 provider "acme" {
   server_url = "https://acme-v02.api.letsencrypt.org/directory"
