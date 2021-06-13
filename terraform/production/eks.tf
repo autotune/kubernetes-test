@@ -49,12 +49,13 @@ resource "aws_security_group_rule" "ec2_ingress_all" {
 }
 
 module "badams" {
-  source          = "terraform-aws-modules/eks/aws"
-  cluster_name    = "badams-prod"
-  cluster_version = "1.19"
-  manage_aws_auth = true
-  subnets         = module.vpc.public_subnets
-  vpc_id          = module.vpc.vpc_id
+  source                                             = "terraform-aws-modules/eks/aws"
+  cluster_name                                       = "badams-prod"
+  cluster_version                                    = "1.19"
+  manage_aws_auth                                    = true
+  subnets                                            = module.vpc.public_subnets
+  vpc_id                                             = module.vpc.vpc_id
+  worker_create_cluster_primary_security_group_rules = true
 
   worker_groups = [
     {
