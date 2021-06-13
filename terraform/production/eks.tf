@@ -109,6 +109,13 @@ resource "aws_route53_record" "rocketchat" {
   records = ["a420dba0371134bfc8938ef346eba567-1425925386.us-east-1.elb.amazonaws.com"]
 }
 
+resource "aws_route53_record" "gitlab" {
+  zone_id = data.aws_route53_zone.selected.zone_id
+  name    = "gitlab"
+  type    = "CNAME"
+  ttl     = "300"
+  records = ["a92721bc538b14be08ba528ad211ca4f-1661387374.us-east-1.elb.amazonaws.com"]
+}
 provider "acme" {
   server_url = "https://acme-v02.api.letsencrypt.org/directory"
 }
