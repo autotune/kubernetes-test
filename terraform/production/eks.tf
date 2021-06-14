@@ -106,7 +106,7 @@ resource "aws_route53_record" "app" {
   name    = "app"
   type    = "CNAME"
   ttl     = "300"
-  records = ["a60af5e1f1c83457cbdfc59f50948368-458617669.us-east-1.elb.amazonaws.com"]
+  records = ["a4632470b3b214cb98481e9feded82d5-455007471.us-east-1.elb.amazonaws.com"]
 }
 
 resource "aws_route53_record" "rocketchat" {
