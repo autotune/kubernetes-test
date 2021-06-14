@@ -101,6 +101,14 @@ data "aws_route53_zone" "selected" {
   name = "badams.ninja."
 }
 
+resource "aws_route53_record" "app" {
+  zone_id = data.aws_route53_zone.selected.zone_id
+  name    = "app"
+  type    = "CNAME"
+  ttl     = "300"
+  records = ["a60af5e1f1c83457cbdfc59f50948368-458617669.us-east-1.elb.amazonaws.com"]
+}
+
 resource "aws_route53_record" "rocketchat" {
   zone_id = data.aws_route53_zone.selected.zone_id
   name    = "chat"
